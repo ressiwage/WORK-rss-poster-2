@@ -12,3 +12,4 @@
 ## запуск
 python main.py
 
+отправьте боту /start

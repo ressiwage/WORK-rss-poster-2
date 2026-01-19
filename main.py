@@ -223,10 +223,12 @@ async def publish_job(context: ContextTypes.DEFAULT_TYPE):
         return
 
     payload = json.loads(row[0])
-
+    title = payload["title"]
+    if title.count("'")>=2:
+        title = title[title.index("'")+1:title.rindex("'")]
     await context.bot.send_message(
         chat_id=CHANNEL_ID,
-        text=f"""{payload["title"]}\n\n{payload["content"]}\n\n{payload["link"]}""",
+        text=f"""{title}\n\n{payload["content"]}\n\n{payload["link"]}""",
         disable_web_page_preview=True
     )
 
